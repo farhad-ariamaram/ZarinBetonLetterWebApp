@@ -1,0 +1,127 @@
+﻿@page
+@model ZarinBetonLetterWebApp.Pages.NewSentMailModel
+@{
+}
+
+
+<div class="row"><div class="col-12 text-center"><h3>نامه ارسالی جدید</h3></div></div>
+
+<div class="row" dir="rtl">
+    <div class="col-12">
+        <form>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">شماره</label>
+                <div class="col-sm-10">
+                    <input class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">تاریخ</label>
+                <div class="col-sm-10">
+                    <input class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">گیرنده</label>
+                <div class="col-sm-10">
+                    <input class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="inputPassword3" class="col-sm-2 col-form-label">قالب</label>
+                <div class="col-sm-10">
+                    <select id="inputState" class="form-control">
+                        <option selected>A5</option>
+                        <option>A4</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-2">پیوست</div>
+                <div class="col-sm-10 text-center">
+                    <div class="form-check" dir="ltr">
+                        <input class="form-check-input" type="checkbox" id="gridCheck1">
+                        <label class="form-check-label" for="gridCheck1">
+                            ندارد
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row" style="display:none" id="attachSection">
+                <label class="col-sm-2 col-form-label">تصویر پیوست</label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="file" id="formFile">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">عنوان اول</label>
+                <div class="col-sm-10">
+                    <input class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">عنوان دوم</label>
+                <div class="col-sm-10">
+                    <input class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">موضوع</label>
+                <div class="col-sm-10">
+                    <input class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">متن</label>
+                <div class="col-sm-10">
+                    <textarea class="form-control"></textarea>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-12">
+                    <button type="submit" class="btn btn-primary">ذخیره و نمایش</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section header{
+    <header>
+        <nav class="navbar navbar-expand-custom navbar-mainbg">
+            <a class="navbar-brand navbar-logo" href="#">نامه ها | زرین بتن</a>
+            <button class="navbar-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="bi bi-list text-white"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <div class="hori-selector">
+                        <div class="left"></div>
+                        <div class="right"></div>
+                    </div>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-page="Settings"><i class="bi bi-gear"></i>تنظیمات</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-page="Backup"><i class="bi bi-layer-backward"></i>Backup</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-page="Index"><i class="bi bi-house"></i>صفحه اصلی</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+}

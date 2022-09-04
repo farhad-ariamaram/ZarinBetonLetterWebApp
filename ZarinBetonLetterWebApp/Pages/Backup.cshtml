@@ -1,0 +1,46 @@
+﻿@page
+@model ZarinBetonLetterWebApp.Pages.BackupModel
+@{
+}
+
+<div class="row">
+    <div class="col-3">
+        <button style="font-size:1.5rem" type="button" class="btn btn-labeled btn-success">
+            <span class="btn-label"><i class="bi bi-upload mx-2"></i></span>Backup
+        </button>
+    </div>
+    <div class="col-3">
+        <button style="font-size:1.5rem" type="button" class="btn btn-labeled btn-primary">
+            <span class="btn-label"><i class="bi bi-download mx-2"></i></span>Restore
+        </button>
+    </div>
+</div>
+
+@section header{
+    <header>
+        <nav class="navbar navbar-expand-custom navbar-mainbg">
+            <a class="navbar-brand navbar-logo" href="#">نامه ها | زرین بتن</a>
+            <button class="navbar-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="bi bi-list text-white"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <div class="hori-selector">
+                        <div class="left"></div>
+                        <div class="right"></div>
+                    </div>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-page="Settings"><i class="bi bi-gear"></i>تنظیمات</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" asp-page="Backup"><i class="bi bi-layer-backward"></i>Backup</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-page="Index"><i class="bi bi-house"></i>صفحه اصلی</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+}
