@@ -8,18 +8,22 @@
     <div class="col-12">
         <form method="post">
             <div class="form-row">
-                <div class="form-group col-md-7">
+                <div class="form-group col-md-6">
                     <label>شعار سال</label>
                     <input asp-for="_slogan.Slogan1" class="form-control">
                 </div>
-                <div class="form-group col-md-5">
+                <div class="form-group col-md-4">
                     <label>سال</label>
                     <input asp-for="_slogan.Year" type="number" class="form-control" placeholder="مثال : 1401">
                 </div>
-                <div class="form-group col-md-5">
-                    <label>مشاهده شعار های ذخیره شده</label>
-                    <a href="#" class="btn btn-success"><i class="bi bi-eye"></i></a>
+                <div class="form-group col-md-2">
+                    <label>مشاهده شعار ها</label>
+                    <a asp-page="SinglePages/Slogan" target="_blank" class="btn btn-success btn-block"><i class="bi bi-eye"></i></a>
                 </div>
+            </div>
+
+            <div class="form-row text-center">
+                
             </div>
 
             <div class="form-row">

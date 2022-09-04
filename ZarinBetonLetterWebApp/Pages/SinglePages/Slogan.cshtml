@@ -1,0 +1,46 @@
+﻿@page
+@model ZarinBetonLetterWebApp.Pages.SinglePages.SloganModel
+@{
+}
+
+<div class="row" dir="rtl">
+    <div class="col-12 text-center">
+        <h3>لیست شعار های تعریف شده</h3>
+    </div>
+</div>
+<div class="row" dir="rtl">
+    <div class="col-12">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>سال</th>
+                    <th>شعار</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model._slogans.Count() < 1)
+                {
+                    <div>هیچ موردی وجود ندارد</div>
+                }
+                else
+                {
+                    @foreach (var item in Model._slogans)
+                    {
+                        <tr>
+                            <th>@item.Year</th>
+                            <th>@item.Slogan1</th>
+                        </tr>
+                    }
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
+<br />
+<div class="row" dir="rtl">
+    <div class="col-12 text-center">
+        <a href="#" onclick="window.close();" class="btn btn-danger">بستن پنجره</a>
+    </div>
+</div>
+
