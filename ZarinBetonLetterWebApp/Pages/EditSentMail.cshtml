@@ -8,7 +8,7 @@
 
 <div class="row" dir="rtl">
     <div class="col-12">
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             <input type="hidden" asp-for="_sentMail.Id" />
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">شماره</label>
@@ -35,8 +35,16 @@
                 <label for="inputPassword3" class="col-sm-2 col-form-label">قالب</label>
                 <div class="col-sm-10">
                     <select asp-for="_sentMail.Format" class="form-control">
-                        <option value="0" selected>A5</option>
-                        <option value="1">A4</option>
+                        @if (Model._sentMail.Format == 0)
+                        {
+                            <option value="0" selected>A5</option>
+                            <option value="1">A4</option>
+                        }
+                        else
+                        {
+                            <option value="0">A5</option>
+                            <option value="1" selected>A4</option>
+                        }
                     </select>
                 </div>
             </div>
@@ -46,17 +54,35 @@
                 <div class="col-sm-10 text-center">
                     <div class="form-check" dir="ltr">
                         <input asp-for="_sentMail.HasAttach" class="form-check-input" type="checkbox" id="gridCheck1">
-                        <label class="form-check-label" for="gridCheck1">
-                            ندارد
+                        <label class="form-check-label" for="gridCheck1" id="checkboxlabel">
+                            @(Model._sentMail.HasAttach?"دارد":"ندارد")
                         </label>
                     </div>
                 </div>
             </div>
 
-            <div class="form-group row" style="display:none" id="attachSection">
+            <div class="form-group row" style="@(Model._sentMail.HasAttach?"":"display:none")" id="attachSection">
+                <div class="col-sm-12 text-center">
+                    <div class="alert alert-danger">
+                        در صورت بارگذاری پیوست جدید، پیوست های قبلی حذف خواهند شد
+                    </div>
+                </div>
                 <label class="col-sm-2 col-form-label">تصویر پیوست</label>
-                <div class="col-sm-10">
-                    <input class="form-control" type="file" id="formFile">
+                <div class="col-sm-5">
+                    <input type="hidden" asp-for="_sentMail.Attaches" />
+                    <input type="file" asp-for="UploadAttaches" accept="image/*" multiple />
+                </div>
+                <div class="col-sm-5">
+                    @if (Model._sentMail.Attaches != null)
+                    {
+                        foreach (var item in Model._sentMail.Attaches.Split(","))
+                        {
+                            if (!string.IsNullOrEmpty(item))
+                            {
+                                <img src="data:image/png;base64,@item" height="100" class="m-1" />
+                            }
+                        }
+                    }
                 </div>
             </div>
 

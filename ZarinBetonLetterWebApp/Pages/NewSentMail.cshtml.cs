@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +24,9 @@ namespace ZarinBetonLetterWebApp.Pages
 
         [BindProperty]
         public SentMail _sentMail { get; set; }
+
+        [BindProperty]
+        public List<IFormFile> UploadAttaches { get; set; }
 
         public async Task OnGet()
         {
@@ -59,6 +64,18 @@ namespace ZarinBetonLetterWebApp.Pages
 
         public async Task<IActionResult> OnPost()
         {
+            if (UploadAttaches != null && UploadAttaches.Count > 0)
+            {
+                foreach (var item in UploadAttaches)
+                {
+                    using (var reader = new BinaryReader(item.OpenReadStream()))
+                    {
+                        byte[] imageBytes = reader.ReadBytes((int)item.Length);
+                        string base64String = Convert.ToBase64String(imageBytes);
+                        _sentMail.Attaches = _sentMail.Attaches + "," + base64String;
+                    }
+                }
+            }
             await _context.SentMails.AddAsync(_sentMail);
             await _context.SaveChangesAsync();
             return RedirectToPage("NewSentMail");

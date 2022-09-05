@@ -26,7 +26,6 @@ namespace ZarinBetonLetterWebApp.Pages
         {
         }
 
-
         public async Task<JsonResult> OnGetJson(int year, int month)
         {
             var _sentMails2 = await _context.SentMails.Where(a => a.Date.EndsWith($"{month}/{year}")).Select(a => new SentMailDto { Id = a.Id, Number = a.Number, Subject = a.Subject, Date = a.Date, Receiver = a.Receiver }).ToListAsync();
@@ -91,6 +90,30 @@ namespace ZarinBetonLetterWebApp.Pages
                 _context.SentMails.Remove(letter);
                 await _context.SaveChangesAsync();
             }
+        }
+
+        public async Task<IActionResult> OnGetAttach(int id)
+        {
+            var letterAttaches = await _context.SentMails.FindAsync(id);
+            if (letterAttaches != null && letterAttaches.Attaches!=null)
+            {
+                var attaches = letterAttaches.Attaches.Split(",");
+                var result = "<html><body>";
+                foreach (var item in attaches)
+                {
+                    if (!string.IsNullOrEmpty(item))
+                    {
+                        result += $"<img src='data:image/png;base64,{item}' height='100' style='margin:5px'/>";
+                    }
+                }
+                result += "</body></html>";
+                return Content(result, "text/html");
+            }
+            else
+            {
+                return Content("فاقد پیوست");
+            }
+            
         }
 
         public class SentMailDto

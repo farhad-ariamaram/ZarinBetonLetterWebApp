@@ -87,7 +87,9 @@ jQuery(document).ready(function ($) {
 $('#gridCheck1').change(function () {
 	if (this.checked) {
 		$("#attachSection").show();
+		$("#checkboxlabel").text("دارد");
 	} else {
 		$("#attachSection").hide();
+		$("#checkboxlabel").text("ندارد");
     }
 });
