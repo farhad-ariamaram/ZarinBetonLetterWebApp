@@ -8,6 +8,7 @@ namespace ZarinBetonLetterWebApp.Models
         public string Number { get; set; }
         public string Date { get; set; }
         public string Sender { get; set; }
+        public string Subject { get; set; }
         public string Attaches { get; set; }
         public bool HasAttach { get; set; }
         public string LetterImage { get; set; }
