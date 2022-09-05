@@ -34,7 +34,17 @@ namespace ZarinBetonLetterWebApp.Pages
 
         public async Task<IActionResult> OnGetView(int id)
         {
-            return Content("عکس نامه نمایش داده شود");
+            var letter = await _context.ReceivedMails.FindAsync(id);
+            if (letter != null && letter.LetterImage!= null && !string.IsNullOrEmpty(letter.LetterImage))
+            {
+                byte[] bytes = Convert.FromBase64String(letter.LetterImage);
+                return File(bytes, "application/octet-stream", letter.Number.Replace("/","-")+".jpg");
+            }
+            else
+            {
+                return Content("فاقد تصویر نامه");
+            }
+            
         }
 
         public async Task OnGetDelete(int id)
