@@ -26,6 +26,9 @@ namespace ZarinBetonLetterWebApp.Pages
         [BindProperty]
         public IFormFile Upload { get; set; }
 
+        [BindProperty]
+        public List<IFormFile> UploadAttaches { get; set; }
+
         public async Task<IActionResult> OnGet(int id)
         {
             _receivedMail = await _context.ReceivedMails.FindAsync(id);
@@ -37,8 +40,29 @@ namespace ZarinBetonLetterWebApp.Pages
             return Page();
         }
 
-        public async Task OnPost()
+        public async Task<IActionResult> OnPost()
         {
+            if (_receivedMail.HasAttach)
+            {
+                if (UploadAttaches != null && UploadAttaches.Count > 0)
+                {
+                    _receivedMail.Attaches = "";
+                    foreach (var item in UploadAttaches)
+                    {
+                        using (var reader = new BinaryReader(item.OpenReadStream()))
+                        {
+                            byte[] imageBytes = reader.ReadBytes((int)item.Length);
+                            string base64String = Convert.ToBase64String(imageBytes);
+                            _receivedMail.Attaches = _receivedMail.Attaches + "," + base64String;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                _receivedMail.Attaches = null;
+            }
+            
             if (Upload != null)
             {
                 using (var reader = new BinaryReader(Upload.OpenReadStream()))
@@ -50,6 +74,7 @@ namespace ZarinBetonLetterWebApp.Pages
             }
             _context.ReceivedMails.Update(_receivedMail);
             await _context.SaveChangesAsync();
+            return RedirectToPage("EditReceivedMail", new { id = _receivedMail.Id });
         }
     }
 }

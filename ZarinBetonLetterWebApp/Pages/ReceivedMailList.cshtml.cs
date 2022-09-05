@@ -57,6 +57,30 @@ namespace ZarinBetonLetterWebApp.Pages
             }
         }
 
+        public async Task<IActionResult> OnGetAttach(int id)
+        {
+            var letterAttaches = await _context.ReceivedMails.FindAsync(id);
+            if (letterAttaches != null && letterAttaches.Attaches != null)
+            {
+                var attaches = letterAttaches.Attaches.Split(",");
+                var result = "<html><body>";
+                foreach (var item in attaches)
+                {
+                    if (!string.IsNullOrEmpty(item))
+                    {
+                        result += $"<img src='data:image/png;base64,{item}' height='100' style='margin:5px'/>";
+                    }
+                }
+                result += "</body></html>";
+                return Content(result, "text/html");
+            }
+            else
+            {
+                return Content("فاقد پیوست");
+            }
+
+        }
+
         public class SentMailDto
         {
             public int Id { get; set; }

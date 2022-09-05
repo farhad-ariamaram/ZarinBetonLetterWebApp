@@ -10,9 +10,15 @@
         </a>
     </div>
     <div class="col-md-6 my-2">
-        <button style="font-size:1.5rem" type="button" class="btn btn-labeled btn-primary">
-            <span class="btn-label"><i class="bi bi-download mx-2"></i></span>Restore
-        </button>
+        <form method="post" enctype="multipart/form-data">
+            <button style="font-size:1.5rem" type="submit" class="btn btn-labeled btn-primary">
+                <span class="btn-label"><i class="bi bi-download mx-2"></i></span>Restore
+            </button>
+            <br />
+            <br />
+            <input type="file" asp-for="Upload" accept=".db" />
+
+        </form>
     </div>
 </div>
 
