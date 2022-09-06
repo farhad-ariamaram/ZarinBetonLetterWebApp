@@ -31,7 +31,7 @@ html {
 }
 @media (min-width: 768px) {
   html {
-    font-size: 16px;
+    font-size: 14px;
   }
 }
 
@@ -75,12 +75,15 @@ body {
 
 
 /*custom*/
-@import url("https://fonts.googleapis.com/css?family=Roboto");
-@import url("https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
+@font-face {
+    font-family: "IranSans";
+    src: url("IranSans.ttf"), url("IranSans.ttf");
+}
 
 body {
-    font-family: "Roboto", sans-serif;
+    font-family: "IranSans";
 }
+
 
 * {
     margin: 0;

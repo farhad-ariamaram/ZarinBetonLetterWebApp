@@ -5,24 +5,20 @@
 }
 
 <div class="row">
-    <div class="col-3">
-        <a asp-page="NewSentMail" style="font-size:1.5rem" type="button" class="btn btn-labeled btn-success">
-            <span class="btn-label"><i class="bi bi-pencil-square mx-2"></i></span>نامه ارسالی جدید
+    <div class="col-6">
+        <a asp-page="NewSentMail" type="button" class="btn btn-labeled btn-success btn-lg m-1">
+            <span class="btn-label">نامه ارسالی جدید</span>
+        </a>
+        <a asp-page="SentMailList" type="button" class="btn btn-labeled btn-primary btn-lg m-1">
+            <span class="btn-label">لیست نامه های ارسالی</span>
         </a>
     </div>
-    <div class="col-3">
-        <a asp-page="SentMailList" style="font-size:1.5rem" type="button" class="btn btn-labeled btn-primary">
-            <span class="btn-label"><i class="bi bi-envelope mx-2"></i></span>لیست نامه های ارسالی
+    <div class="col-6">
+        <a asp-page="NewReceivedMail" type="button" class="btn btn-labeled btn-info btn-lg m-1">
+            <span class="btn-label">نامه دریافتی جدید</span>
         </a>
-    </div>
-    <div class="col-3">
-        <a asp-page="NewReceivedMail" style="font-size:1.5rem" type="button" class="btn btn-labeled btn-info">
-            <span class="btn-label"><i class="bi bi-box-arrow-in-right mx-2"></i></span>نامه دریافتی جدید
-        </a>
-    </div>
-    <div class="col-3">
-        <a asp-page="ReceivedMailList" style="font-size:1.5rem" type="button" class="btn btn-labeled btn-danger">
-            <span class="btn-label"><i class="bi bi-mailbox2 mx-2"></i></span>لیست نامه های دریافتی
+        <a asp-page="ReceivedMailList" type="button" class="btn btn-labeled btn-danger btn-lg m-1">
+            <span class="btn-label">لیست نامه های دریافتی</span>
         </a>
     </div>
 </div>
@@ -32,7 +28,7 @@
         <nav class="navbar navbar-expand-custom navbar-mainbg">
             <a class="navbar-brand navbar-logo" href="#">نامه ها | زرین بتن</a>
             <button class="navbar-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="bi bi-list text-white"></i>
+                <b class="text-white">☰</b>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
