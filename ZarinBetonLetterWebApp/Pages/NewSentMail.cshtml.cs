@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -110,25 +111,37 @@ namespace ZarinBetonLetterWebApp.Pages
                 fileName = @"TempA4.docx";
             }
 
-            string tempFileName = fileName + "-temp.docx";
+            var allDocs = Directory.GetFiles(".", "*.docx", SearchOption.TopDirectoryOnly).ToList();
 
-            if (System.IO.File.Exists(tempFileName))
+            foreach (var item in allDocs)
             {
-                System.IO.File.Delete(tempFileName);
+                if (!item.Equals(".\\TempA5.docx") && !item.Equals(".\\TempA4.docx"))
+                {
+                    try
+                    {
+                        System.IO.File.Delete(item);
+                    }
+                    catch (Exception)
+                    {
+                        continue;
+                    }
+                }
             }
+
+            string tempFileName = fileName + DateTime.Now.ToString().Replace("/","-").Replace(":","-").Replace(" ","") + ".docx";
 
             System.IO.File.Copy(fileName, tempFileName);
 
             var doc = DocX.Load(tempFileName);
-
-            doc.ReplaceText("[تاریخ - برنامه]", date);
-            doc.ReplaceText("[شماره - برنامه]", number);
-            doc.ReplaceText("[پیوست - برنامه]", hasAttach);
-            doc.ReplaceText("[شعار سال - برنامه]", slogan);
-            doc.ReplaceText("[تیتر اول - برنامه]", title1);
-            doc.ReplaceText("[تیتر دوم - برنامه]", title2);
+            doc.ReplaceText("[تاریخ - برنامه]", date ?? "");
+            doc.ReplaceText("[شماره - برنامه]", number ?? "");
+            doc.ReplaceText("[پیوست - برنامه]", hasAttach ?? "");
+            doc.ReplaceText("[شعار سال - برنامه]", slogan ?? "");
+            doc.ReplaceText("[تیتر اول - برنامه]", title1 ?? "");
+            doc.ReplaceText("[تیتر دوم - برنامه]", title2 ?? "");
             doc.ReplaceText("[موضوع - برنامه]", "موضوع: " + subject);
-            doc.ReplaceText("[متن نامه - برنامه]", body);
+            doc.ReplaceText("[متن نامه - برنامه]", body ?? "");
+
 
             doc.Save();
 
