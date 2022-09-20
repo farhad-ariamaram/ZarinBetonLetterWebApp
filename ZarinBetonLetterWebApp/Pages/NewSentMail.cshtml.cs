@@ -96,7 +96,7 @@ namespace ZarinBetonLetterWebApp.Pages
             {
                 var letter = await _context.SentMails.FindAsync(_sentMail.Id);
                 var yearOdLetter = letter.Date.Split("/")[2];
-                var slogan = await _context.Slogans.Where(a => a.Year.Equals(yearOdLetter)).FirstOrDefaultAsync();
+                var slogan = await _context.Slogans.Where(a => a.Year==int.Parse(yearOdLetter)).FirstOrDefaultAsync();
                 CreateDocument(wordPath.WordPath, letter.Number, letter.Format, letter.Date, slogan == null ? "" : slogan.Slogan1, letter.HasAttach ? "دارد" : "ندارد", letter.Title1, letter.Title2, letter.Subject, letter.Body);
             }
 
